@@ -1,9 +1,12 @@
 package util;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 /**
  * Created by bst on 2017/9/4.
  */
 public class Counter {
+    private AtomicInteger counter;
     private int count;
 
     /**
@@ -42,5 +45,10 @@ public class Counter {
             }
         }
         System.out.println(counter.getCount());
+    }
+
+    public int getAndSet(){
+        counter.compareAndSet(0,1);//CAS
+        return counter.getAndSet(1);
     }
 }
